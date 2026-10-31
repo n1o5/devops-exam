@@ -1,0 +1,20 @@
+groups:
+  - name: flashsale_alerts
+    rules:
+      - alert: HighPendingOrders
+        expr: pending_orders > 40
+        for: 15s
+        labels:
+          severity: warning
+        annotations:
+          summary: "High pending orders"
+          description: "Pending orders exceeded 40 for 15 seconds."
+
+      - alert: HighAverageOrderTime
+        expr: (average_order_time_sum/average_order_time_count) > 25
+        for: 15s
+        labels:
+          severity: critical
+        annotations:
+          summary: "High average order time"
+          description: "Average simulated order time exceeded 25 seconds."
